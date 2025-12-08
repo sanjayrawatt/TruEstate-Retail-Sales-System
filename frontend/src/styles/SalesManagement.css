@@ -1,0 +1,236 @@
+.sales-management {
+  padding: 1rem;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.main-layout {
+  display: flex;
+  gap: 1rem;
+}
+
+.content-area {
+  flex: 1;
+  min-width: 0;
+}
+
+.header {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-radius: 8px;
+  padding: 1.5rem 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #334155;
+  position: relative;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.header-left {
+  flex: 1;
+  text-align: center;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-title {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #60a5fa, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  color: #94a3b8;
+  font-size: 1rem;
+  margin: 0.25rem 0 0 0;
+}
+
+.user-profile {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: white;
+  font-size: 0.875rem;
+}
+
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #334155;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.stat-icon {
+  font-size: 1.25rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #334155, #1e293b);
+}
+
+.stat-content h3 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #94a3b8;
+  margin-bottom: 0.25rem;
+}
+
+.stat-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 0.125rem;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.controls-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.clear-btn {
+  background: linear-gradient(135deg, #475569, #334155);
+  color: #f1f5f9;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  border: 1px solid #475569;
+}
+
+.clear-btn:hover {
+  background: linear-gradient(135deg, #64748b, #475569);
+  transform: translateY(-1px);
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+}
+
+.results-info {
+  color: #94a3b8;
+  font-size: 0.875rem;
+}
+
+.main-content {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.data-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: #94a3b8;
+}
+
+.spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid rgba(59, 130, 246, 0.2);
+  border-top: 3px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  background-color: #450a0a;
+  color: #fca5a5;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #7f1d1d;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .sales-management {
+    padding: 1rem;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .stats-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .controls-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

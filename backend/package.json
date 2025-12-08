@@ -1,0 +1,26 @@
+{
+  "name": "truestate-backend",
+  "version": "1.0.0",
+  "description": "Backend for Retail Sales Management System",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --max-old-space-size=4096 src/index.js",
+    "dev": "nodemon --max-old-space-size=4096 src/index.js"
+  },
+  "keywords": [
+    "sales",
+    "management",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "csv-parser": "^3.2.0",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

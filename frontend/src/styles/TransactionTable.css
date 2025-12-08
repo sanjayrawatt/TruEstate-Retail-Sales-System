@@ -1,0 +1,138 @@
+.transaction-table-container {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+  border: 1px solid #334155;
+}
+
+.transaction-table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+
+.transaction-table thead {
+  background-color: #1e293b;
+  color: #f1f5f9;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.transaction-table th {
+  padding: 0.875rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #334155;
+}
+
+.transaction-table tbody tr {
+  border-bottom: 1px solid #334155;
+  transition: all 0.15s;
+  background-color: #0f172a;
+}
+
+.transaction-table tbody tr:hover {
+  background-color: #1e293b;
+}
+
+.transaction-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.transaction-table td {
+  padding: 0.75rem 1rem;
+  color: #cbd5e1;
+  white-space: nowrap;
+}
+
+.transaction-table td:first-child,
+.transaction-table th:first-child {
+  padding-left: 1.5rem;
+}
+
+.transaction-table td:last-child,
+.transaction-table th:last-child {
+  padding-right: 1.5rem;
+}
+
+.status {
+  padding: 0.375rem 0.875rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+.status.delivered {
+  background-color: #134e4a;
+  color: #6ee7b7;
+  border: 1px solid #065f46;
+}
+
+.status.completed {
+  background-color: #134e4a;
+  color: #6ee7b7;
+  border: 1px solid #065f46;
+}
+
+.status.pending {
+  background-color: #422006;
+  color: #fcd34d;
+  border: 1px solid #78350f;
+}
+
+.status.cancelled {
+  background-color: #450a0a;
+  color: #fca5a5;
+  border: 1px solid #7f1d1d;
+}
+
+.status.returned {
+  background-color: #581c87;
+  color: #e9d5ff;
+  border: 1px solid #7e22ce;
+}
+
+.status.processing {
+  background-color: #164e63;
+  color: #67e8f9;
+  border: 1px solid #0e7490;
+}
+
+.no-results {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: #64748b;
+  font-size: 1rem;
+}
+
+.no-results p {
+  margin: 0;
+  font-size: 1.125rem;
+  color: #94a3b8;
+}
+
+/* Scrollbar styling */
+.transaction-table-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.transaction-table-container::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+.transaction-table-container::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+
+.transaction-table-container::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
