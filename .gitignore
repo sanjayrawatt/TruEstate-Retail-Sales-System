@@ -3,12 +3,14 @@ node_modules/
 backend/node_modules/
 frontend/node_modules/
 
-# # datasets (NEVER PUSH)
-# backend/data/*.csv
-# backend/data/*.json
+# datasets (NEVER PUSH)
+backend/data/*.csv
+backend/data/*.json
 
 # env files
 .env
+backend/.env
+frontend/.env
 
 # logs
 npm-debug.log*
