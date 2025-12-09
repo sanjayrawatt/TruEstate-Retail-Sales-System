@@ -65,7 +65,7 @@ Supports ascending/descending sort on Date, Quantity, and Customer Name. Default
 
 3. **Configure environment**
    - Copy `.env.example` to `.env`
-   - Add MongoDB Atlas connection string: `MONGODB_URI=mongodb+srv://user:password@cluster.mongodb.net/truestate`
+   - Add MongoDB Atlas connection string: your_mongodb_connection_string
 
 4. **Start server**
    ```bash
