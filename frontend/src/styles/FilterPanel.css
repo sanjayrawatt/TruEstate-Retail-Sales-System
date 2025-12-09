@@ -1,90 +1,24 @@
 .filter-panel {
   background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
   border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  padding: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: 1px solid #334155;
   transition: all 0.3s ease;
-  max-width: 280px;
-  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-/* Collapsed Filter Panel Styles */
 .filter-panel.collapsed {
   padding: 1rem;
-  max-width: 60px;
-  min-width: 60px;
-}
-
-.filter-panel.collapsed .filter-content {
-  display: none;
-}
-
-.filter-panel.collapsed .filter-brand {
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.filter-panel.collapsed .brand-logo {
-  margin: 0 auto;
-}
-
-.filter-panel.collapsed .brand-name {
-  display: none;
-}
-
-.filter-panel.collapsed .filter-header {
-  margin-bottom: 0;
-  justify-content: center;
-}
-
-.filter-panel.collapsed .filter-header h2 {
-  display: none;
-}
-
-.filter-panel.collapsed .toggle-btn {
-  margin: 0 auto;
-}
-
-.filter-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.filter-panel.collapsed .filter-brand {
-  margin-bottom: 0;
-}
-
-.brand-logo {
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
-  background: linear-gradient(135deg, #3b82f6, #60a5fa);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  color: white;
-  font-size: 0.875rem;
-}
-
-.brand-name {
-  font-size: 1.25rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #60a5fa, #38bdf8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .filter-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .filter-panel.collapsed .filter-header {
@@ -92,12 +26,22 @@
 }
 
 .filter-header h2 {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: #f1f5f9;
-  margin: 0;
 }
 
+.filter-header-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filter-header-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.sidebar-toggle-btn,
 .toggle-btn {
   background: none;
   border: 1px solid #475569;
@@ -110,8 +54,10 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
+  font-size: 0.875rem;
 }
 
+.sidebar-toggle-btn:hover,
 .toggle-btn:hover {
   background-color: #334155;
   border-color: #64748b;
@@ -120,7 +66,10 @@
 .filter-content {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 0.5rem;
 }
 
 .filter-group h3 {
@@ -137,13 +86,13 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  max-height: 150px;
+  max-height: 200px;
   overflow-y: auto;
   padding-right: 0.5rem;
 }
 
 .checkbox-group.scrollable {
-  max-height: 100px;
+  max-height: 120px;
 }
 
 .checkbox-group::-webkit-scrollbar {
@@ -189,7 +138,7 @@
 
 .range-inputs {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 0.5rem;
 }
 
@@ -201,7 +150,6 @@
   background-color: #1e293b;
   color: #f1f5f9;
   font-size: 0.875rem;
-  width: 100%;
 }
 
 .range-input:focus {
@@ -223,7 +171,6 @@
   background-color: #1e293b;
   color: #f1f5f9;
   font-size: 0.875rem;
-  width: 100%;
 }
 
 .date-input:focus {

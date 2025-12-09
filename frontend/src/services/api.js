@@ -1,19 +1,29 @@
 import axios from "axios";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = "/api";
 
 /**
- * Get sales data
+ * Get sales data with filters, search, sorting, and pagination
  */
 export const getSalesData = async (params) => {
-  const response = await axios.get(`${API_BASE_URL}/sales`, { params });
-  return response.data;
+  try {
+    const response = await axios.get(`${API_BASE_URL}/sales`, { params });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching sales data:", error);
+    throw error;
+  }
 };
 
 /**
- * Get filter options
+ * Get available filter options
  */
 export const getFilterOptions = async () => {
-  const response = await axios.get(`${API_BASE_URL}/sales/filters`);
-  return response.data;
+  try {
+    const response = await axios.get(`${API_BASE_URL}/sales/filters`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching filter options:", error);
+    throw error;
+  }
 };

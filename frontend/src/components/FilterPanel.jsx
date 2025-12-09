@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../styles/FilterPanel.css";
 
 const FilterPanel = ({ filters, options, onFilterChange }) => {
-  const [isExpanded, setIsExpanded] = useState(true);
 
   const handleMultiSelectChange = (filterName, value) => {
     const currentValues = filters[filterName] || [];
@@ -18,25 +17,12 @@ const FilterPanel = ({ filters, options, onFilterChange }) => {
   };
 
   return (
-    <div className={`filter-panel ${isExpanded ? "expanded" : "collapsed"}`}>
-      <div className="filter-brand">
-        <div className="brand-logo">T</div>
-        {isExpanded && <span className="brand-name">TruEstate</span>}
-      </div>
-      
+    <div className="filter-panel">
       <div className="filter-header">
-        <h2>{isExpanded ? "🎯 Filters" : "🎯"}</h2>
-        <button
-          className="toggle-btn"
-          onClick={() => setIsExpanded(!isExpanded)}
-          title={isExpanded ? "Collapse filters" : "Expand filters"}
-        >
-          {isExpanded ? "◀" : "▶"}
-        </button>
+        <h2>🎯 Filters</h2>
       </div>
 
-      {isExpanded && (
-        <div className="filter-content">
+      <div className="filter-content">
           {/* Customer Region */}
           <div className="filter-group">
             <h3>🌍 Customer Region</h3>
@@ -170,7 +156,6 @@ const FilterPanel = ({ filters, options, onFilterChange }) => {
             </div>
           </div>
         </div>
-      )}
     </div>
   );
 };

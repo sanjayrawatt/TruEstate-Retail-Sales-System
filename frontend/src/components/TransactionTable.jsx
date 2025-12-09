@@ -34,26 +34,24 @@ const TransactionTable = ({ data }) => {
         <tbody>
           {data.map((transaction, index) => (
             <tr key={index}>
-              <td>{transaction["Date"]}</td>
-              <td>{transaction["Customer Name"]}</td>
-              <td>{transaction["Phone Number"]}</td>
-              <td>{transaction["Gender"]}</td>
-              <td>{transaction["Age"]}</td>
-              <td>{transaction["Customer Region"]}</td>
-              <td>{transaction["Product Name"]}</td>
-              <td>{transaction["Product Category"]}</td>
-              <td>{transaction["Quantity"]}</td>
-              <td>${transaction["Price per Unit"]}</td>
-              <td>{transaction["Discount Percentage"]}%</td>
-              <td>${transaction["Final Amount"]}</td>
-              <td>{transaction["Payment Method"]}</td>
+              <td>{new Date(transaction.date).toLocaleDateString()}</td>
+              <td>{transaction.customerName}</td>
+              <td>{transaction.phoneNumber}</td>
+              <td>{transaction.gender}</td>
+              <td>{transaction.age}</td>
+              <td>{transaction.customerRegion}</td>
+              <td>{transaction.productName}</td>
+              <td>{transaction.productCategory}</td>
+              <td>{transaction.quantity}</td>
+              <td>${transaction.pricePerUnit}</td>
+              <td>{transaction.discountPercentage}%</td>
+              <td>${transaction.finalAmount}</td>
+              <td>{transaction.paymentMethod}</td>
               <td>
                 <span
-                  className={`status ${transaction[
-                    "Order Status"
-                  ]?.toLowerCase()}`}
+                  className={`status ${transaction.orderStatus?.toLowerCase()}`}
                 >
-                  {transaction["Order Status"]}
+                  {transaction.orderStatus}
                 </span>
               </td>
             </tr>

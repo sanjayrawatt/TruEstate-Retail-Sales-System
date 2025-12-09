@@ -1,69 +1,112 @@
 .sales-management {
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 1.5rem;
   max-width: 100%;
   overflow-x: hidden;
-}
-
-.main-layout {
-  display: flex;
-  gap: 1rem;
-}
-
-.content-area {
-  flex: 1;
-  min-width: 0;
+  background: #0f172a;
 }
 
 .header {
   background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
   border-radius: 8px;
-  padding: 1.5rem 1rem;
-  margin-bottom: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-layout {
+  display: flex;
+  gap: 1.5rem;
+  flex: 1;
+  min-height: 0;
+}
+
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-radius: 8px;
+  padding: 1.25rem;
+  height: calc(100vh - 180px);
+  overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: 1px solid #334155;
-  position: relative;
+}
+
+.main-area {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
 }
 
 .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+  flex-wrap: nowrap;
+  gap: 2rem;
 }
 
 .header-left {
-  flex: 1;
-  text-align: center;
+  flex: 0 0 auto;
 }
 
-.brand-text {
+.truestate-logo {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
-.main-title {
-  font-size: 2rem;
-  font-weight: 800;
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #10b981, #34d399);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+}
+
+.logo-text {
   background: linear-gradient(90deg, #60a5fa, #38bdf8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin: 0;
-  letter-spacing: 1px;
 }
 
-.subtitle {
+.header-center {
+  flex: 1;
+  text-align: center;
+}
+
+.header-right {
+  flex: 0 0 auto;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #60a5fa, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.25rem;
+}
+
+.header p {
   color: #94a3b8;
   font-size: 1rem;
-  margin: 0.25rem 0 0 0;
 }
 
 .user-profile {
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
+  display: flex;
+  align-items: center;
 }
 
 .user-avatar {
@@ -81,7 +124,7 @@
 
 .stats-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
@@ -89,10 +132,10 @@
 .stat-card {
   background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
   border-radius: 8px;
-  padding: 1rem;
+  padding: 1.25rem;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: 1px solid #334155;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -104,10 +147,10 @@
 }
 
 .stat-icon {
-  font-size: 1.25rem;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  font-size: 1.5rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -122,10 +165,10 @@
 }
 
 .stat-value {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #f1f5f9;
-  margin-bottom: 0.125rem;
+  margin-bottom: 0.25rem;
 }
 
 .stat-label {
@@ -174,17 +217,6 @@
   font-size: 0.875rem;
 }
 
-.main-content {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.data-section {
-  flex: 1;
-  min-width: 300px;
-}
-
 .loading {
   text-align: center;
   padding: 3rem;
@@ -215,22 +247,28 @@
   margin-bottom: 1rem;
 }
 
+@media (max-width: 1024px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    position: static;
+  }
+}
+
 @media (max-width: 768px) {
   .sales-management {
     padding: 1rem;
   }
   
-  .header-content {
+  .dashboard-layout {
     flex-direction: column;
-    align-items: flex-start;
   }
   
-  .stats-container {
-    grid-template-columns: 1fr;
-  }
-  
-  .controls-section {
-    flex-direction: column;
-    align-items: stretch;
+  .sidebar {
+    width: 100%;
+    position: static;
   }
 }

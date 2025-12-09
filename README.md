@@ -1,14 +1,15 @@
 # TrueState - Retail Sales Management System
 
 ## Overview
-TrueState is a full-stack retail sales management dashboard that enables users to explore and analyze 1000 sales transactions. Built with React and Node.js, it provides powerful search, filtering, sorting, and pagination capabilities with a modern dark-themed interface. The system processes real CSV data efficiently and delivers a responsive user experience across all devices.
+TrueState is a full-stack retail sales management dashboard built with React, Node.js, and MongoDB. It displays 580,000 transaction records with powerful search, filtering, sorting, and pagination capabilities. Users can explore sales data with a modern dark-themed interface featuring a responsive sidebar layout and real-time analytics.
 
 ## Tech Stack
 
 ### Backend
 - **Node.js**: Server runtime with ES6 modules
-- **Express.js**: RESTful API framework
-- **csv-parser**: CSV data streaming and parsing
+- **Express.js**: RESTful API framework  
+- **MongoDB**: Cloud database with Atlas integration
+- **Mongoose**: ODM for MongoDB queries
 
 ### Frontend
 - **React 18**: Component-based UI library with hooks
@@ -16,71 +17,39 @@ TrueState is a full-stack retail sales management dashboard that enables users t
 - **CSS3**: Custom styling with gradients and flexbox
 
 ### Data & Infrastructure
-- **CSV Data**: 1000 sales records loaded on startup
-- **In-Memory Storage**: Fast data access with caching
+- **MongoDB Atlas**: Cloud database for 580,000 records
 - **CORS**: Cross-origin communication between frontend and backend
 
 ## Search Implementation Summary
 
 **Location**: `frontend/src/components/SearchBar.jsx` & `backend/src/services/salesService.js`
 
-The search feature performs **case-insensitive full-text matching** on two fields:
-- Customer Name
-- Phone Number
-
-**Frontend**: Real-time input handler updates state and triggers API call
-**Backend**: `applySearch()` filters dataset using `.includes()` for matching records
-**UX**: Debounced search with instant results and visual feedback
+Case-insensitive full-text search across Customer Name and Phone Number fields. Frontend sends search query to backend which filters MongoDB documents using regex matching. Results display instantly with pagination preserved.
 
 ## Filter Implementation Summary
 
 **Location**: `frontend/src/components/FilterPanel.jsx` & `backend/src/services/salesService.js`
 
-Multi-select and range filters across 6 dimensions:
-
-| Filter Type | Fields | Implementation |
-|-------------|--------|-----------------|
-| Multi-select | Region, Gender, Category, Payment Method, Tags | Array matching with `.includes()` |
-| Range | Age, Date | Min/max boundary checks |
-| Collapsible UI | Filter panel toggles to save space | CSS display/hide with smooth transition |
-
-**Backend**: `applyFilters()` sequentially checks each active filter
-**State**: Filters persist across pagination and sorting operations
+Multi-select filters (Region, Gender, Category, Payment Method, Tags) and range filters (Age, Date Range). Filters persist across pagination. Backend applies MongoDB query operators ($in, $gte, $lte) to match documents. Sidebar remains always visible for easy filter access.
 
 ## Sorting Implementation Summary
 
 **Location**: `frontend/src/components/SortingDropdown.jsx` & `backend/src/services/salesService.js`
 
-Supports ascending/descending sort on 3 fields:
-- **Date**: Chronological order (new/old)
-- **Quantity**: Numerical order (high/low)
-- **Customer Name**: Alphabetical order (A-Z/Z-A)
-
-**Backend**: `applySorting()` uses `.sort()` with type-specific comparisons
-**Default**: Newest transactions first
-**Reset**: "None" option clears sorting
+Supports ascending/descending sort on Date, Quantity, and Customer Name. Default sorting shows newest transactions first. Backend applies sorting before pagination. Reset option clears sorting and returns to default order.
 
 ## Pagination Implementation Summary
 
 **Location**: `frontend/src/components/Pagination.jsx` & `backend/src/services/salesService.js`
 
-**Page Size**: 10 records per page (fixed)
-**Total Records**: 1000 (first 1000 from CSV)
-**Total Pages**: 100
-
-**Implementation**:
-- Frontend sends `page` query parameter
-- Backend calculates start/end indices: `(page - 1) * pageSize`
-- Returns paginated slice + metadata (total, page, pageSize, totalPages)
-- UI updates on page click with no data loss from filters/sorts
-
-**Navigation**: Previous/Next buttons + direct page selection
+10 records per page across 58,000 total pages. Frontend sends page parameter, backend calculates offsets and returns paginated data with metadata. State preserved across filter/sort operations. Direct page selection and Previous/Next navigation available.
 
 ## Setup Instructions
 
 ### Prerequisites
-- Node.js v22.18.0+
+- Node.js v16+
 - npm or yarn
+- MongoDB Atlas account (for cloud database)
 
 ### Backend Setup
 
@@ -94,25 +63,23 @@ Supports ascending/descending sort on 3 fields:
    npm install
    ```
 
-3. **Verify CSV file exists**
-   ```bash
-   ls -la data/truestate_assignment_dataset.csv
-   ```
+3. **Configure environment**
+   - Copy `.env.example` to `.env`
+   - Add MongoDB Atlas connection string: `MONGODB_URI=mongodb+srv://user:password@cluster.mongodb.net/truestate`
 
-4. **Start server (production)**
+4. **Start server**
    ```bash
    npm start
    ```
-   Or development mode with auto-reload:
+   Or development mode:
    ```bash
    npm run dev
    ```
-
    Server runs on **http://localhost:5151**
 
 ### Frontend Setup
 
-1. **In a new terminal, navigate to frontend**
+1. **In new terminal, navigate to frontend**
    ```bash
    cd frontend
    ```
@@ -126,17 +93,13 @@ Supports ascending/descending sort on 3 fields:
    ```bash
    npm run dev
    ```
-
    App runs on **http://localhost:3151**
 
-### Access the Application
+### Access Application
 
-Open your browser and navigate to:
-```
-http://localhost:3151
-```
+Open browser and navigate to **http://localhost:3151**
 
-You should see the Sales Dashboard with all 1000 records paginated at 10 per page.
+You should see the Sales Dashboard with 580,000 records paginated at 10 per page.
 
 ### File Structure
 
@@ -147,9 +110,8 @@ TrueState/
 │   │   ├── index.js
 │   │   ├── controllers/
 │   │   ├── routes/
-│   │   └── services/
-│   ├── data/
-│   │   └── truestate_assignment_dataset.csv
+│   │   ├── services/
+│   │   └── models/
 │   ├── package.json
 │   └── README.md
 ├── frontend/
@@ -158,35 +120,32 @@ TrueState/
 │   │   ├── hooks/
 │   │   ├── services/
 │   │   ├── styles/
-│   │   ├── App.jsx
-│   │   └── main.jsx
+│   │   └── App.jsx
 │   ├── vite.config.js
 │   ├── package.json
 │   └── README.md
-├── README.md
-└── docs/
-    └── architecture.md
+├── docs/
+│   └── architecture.md
+└── README.md
 ```
 
 ### Troubleshooting
 
 **Port Already in Use**
 ```bash
-# Kill process on port 5151
-kill -9 $(lsof -ti:5151)
-
-# Kill process on port 3151
-kill -9 $(lsof -ti:3151)
+kill -9 $(lsof -ti:5151)  # Backend
+kill -9 $(lsof -ti:3151)  # Frontend
 ```
 
-**CSV File Not Found**
-- Ensure `truestate_assignment_dataset.csv` is in `backend/data/` directory
-- Check file is readable: `file backend/data/truestate_assignment_dataset.csv`
+**MongoDB Connection Failed**
+- Verify connection string in `.env`
+- Ensure IP is whitelisted in MongoDB Atlas
+- Check network connectivity
 
 **CORS Errors**
 - Verify backend is running on port 5151
-- Check vite proxy config points to `http://localhost:5151`
-- Clear browser cache and hard refresh (Cmd+Shift+R)
+- Check vite proxy config in `vite.config.js`
+- Clear browser cache and hard refresh
 
 ## Documentation
-See `docs/architecture.md` for system architecture and data flow diagrams.
+See `docs/architecture.md` for system architecture and data flow.
